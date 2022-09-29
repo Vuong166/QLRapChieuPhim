@@ -33,6 +33,7 @@ namespace QLRapChieuPhim.Pages
             var response = client.DocPhimTheoTheLoai(input);
             DanhSachPhim = response.DanhSachPhim.Select(phim => new PhimModel
             {
+                Id = phim.Id,
                 TenPhim = phim.TenPhim,
                 TenGoc = phim.TenGoc,
                 DanhSachTheLoaiId = phim.DanhSachTheLoaiId,

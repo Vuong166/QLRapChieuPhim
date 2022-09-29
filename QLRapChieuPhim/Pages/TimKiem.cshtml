@@ -52,43 +52,53 @@
                 <div class="clearfix"></div>
             </form>
         </div>
-        @{
-            <div class="text-center">
-                <h1 class="display-4">Welcome to CSC Cinema</h1>
-                <img alt='logo' src="~/images/csc-cinema-logo.png" />
-            </div>
-        
+        @if (Model.DanhSachPhim.Count > 0)
+        {
+
+            foreach (var phim in Model.DanhSachPhim)
+            {
                 <!-- Movie preview item -->
                 <div class="movie movie--preview movie--full release">
                     <div class="col-sm-3 col-md-2 col-lg-2">
                         <div class="movie__images">
-                            <a href="/ThongTinPhim?phimid=">
-                                <img alt="" src="">
+                            <a href="/ThongTinPhim?phimid=@phim.Id">
+                                <img alt="" src="data:image/png;base64, @phim.Poster">
                             </a>
                         </div>
                     </div>
 
                     <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
-                        <a href="/ThongTinPhim?phimid=" class="movie__title link--huge"></a>
+                        <a href="/ThongTinPhim?phimid=@phim.Id" class="movie__title link--huge">@phim.TenPhim</a>
 
-                        <p class="movie__time"></p>
+                        <p class="movie__time">@phim.ThoiLuong phút</p>
 
-                        <p class="movie__option"><strong>Nước sản xuất: </strong><a href="#"></a></p>
-                        <p class="movie__option"><strong>Hãng sản xuất: </strong><a href="#"></a></p>
+                        <p class="movie__option"><strong>Nước sản xuất: </strong><a href="#">@phim.NuocSanXuat</a></p>
+                        <p class="movie__option"><strong>Hãng sản xuất: </strong><a href="#">@phim.NhaSanXuat</a></p>
                         <p class="movie__option">
                             <strong>Thể loại: </strong>
-                            
+                            @if(Model.DanhSachTheLoai.Count > 0)
+                            {
+                                var dsTheloai = Model.DanhSachTheLoai.Where(x => phim.DanhSachTheLoaiId.Contains("," + x.Id.ToString() + ",")).ToList();
+                                foreach (var tl in dsTheloai)
+                                {
+                                    <span>@tl.Ten, </span>
+                                }
+                            }
                         </p>
-                        <p class="movie__option"><strong>Ngày khởi chiếu: </strong></p>
-                        <p class="movie__option"><strong>Đạo diễn: </strong><a href="#"></a></p>
-                        <p class="movie__option"><strong>Diễn viên: </strong><a href="#"></a></p>
-                        <p class="movie__option"><strong></strong></p>
+                        <p class="movie__option"><strong>Ngày khởi chiếu: @(phim.NgayKhoiChieu.Year >= DateTime.Now.Year + 10 ? "Chưa có lịch chiếu": phim.NgayKhoiChieu.ToString("dd/MM/yyyy"))</strong></p>
+                        <p class="movie__option"><strong>Đạo diễn: </strong><a href="#">@phim.DaoDien</a></p>
+                        <p class="movie__option"><strong>Diễn viên: </strong><a href="#">@phim.DienVien</a></p>
+                        @if (Model.DanhSachXepHangPhim.Count > 0)
+                        {
+                            var xephang = Model.DanhSachXepHangPhim.FirstOrDefault(x => x.Id.Equals(phim.XepHangPhimId));
+                            <p class="movie__option"><strong>@xephang.Ten</strong></p>
+                        }
 
                         <div class="movie__btns">
                             <a href="#" class="btn btn-md btn-- btn--warning">Đặt vé</a>
                             <a href="#" class="watch-trailer">Trailer</a>
                             <div class="clearfix"></div>
-                            <a href="/CapNhatPhim?phimid=" class="btn btn--default" style="margin-top: 20px;color: #fff;">
+                            <a href="/CapNhatPhim?phimid=@phim.Id" class="btn btn--default" style="margin-top: 20px;color: #fff;">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 16px;"></i> Edit
                             </a>
                         </div>
@@ -101,14 +111,38 @@
                 <!-- end movie preview item -->
             }
 
-            @{
-                <div class="pagination paginatioon--full">
-                    <a href="/DanhSachPhim?keyword=&currentpage=" class="pagination__prev ">prev</a>
-                    <a href="/DanhSachPhim?keyword=&currentpage=" class="pagination__next ">next</a>
-                </div>
-            }
         }
-        
+        else
+        {
+            <div class="text-center">
+                <h1 class="display-4">Welcome to CSC Cinema</h1>
+                <img alt='logo' src="~/images/csc-cinema-logo.png" />
+            </div>
+        }
+
+        @if (Model.PageCount > 1)
+        {
+    <div class="pagination paginatioon--full">
+        @if (Model.CurrentPage > 1)
+        {
+            <a href="/TimKiem?keyword=@Model.Keyword&currentpage=@(Model.CurrentPage - 1)" class="pagination__prev ">prev</a>
+        }
+        else
+        {
+            <a href="#" class="pagination__prev disabled">prev</a>
+        }
+        @if (Model.CurrentPage < Model.PageCount)
+        {
+            <a href="/TimKiem?keyword=@Model.Keyword&currentpage=@(Model.CurrentPage + 1)" class="pagination__next ">next</a>
+        }
+        else
+        {
+            <a href="#" class="pagination__next disabled">next</a>
+        }
+    </div>
+        }
+
+
     </div>
 
 </section>

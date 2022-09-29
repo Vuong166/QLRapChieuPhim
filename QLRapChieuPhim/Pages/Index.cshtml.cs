@@ -21,7 +21,9 @@ namespace QLRapChieuPhim.Pages
 
         public void OnGet()
         {
-            
+            //Đây là sự kiện mạc định được gọi khi mở trang
+            //Thêm 1 dòng mô tả nữa
+            //mô tả ở lớp
         }
     }
 }

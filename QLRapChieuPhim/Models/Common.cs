@@ -20,7 +20,7 @@ namespace QLRapChieuPhim.Models
 
             foreach (var parentProperty in parentProperties)
             {
-                if (parentProperty.Name.ToLower() == "id") continue;
+                //if (parentProperty.Name.ToLower() == "id") continue;
                 foreach (var childProperty in childProperties)
                 {
                     if (parentProperty.Name == childProperty.Name && parentProperty.PropertyType == childProperty.PropertyType)
