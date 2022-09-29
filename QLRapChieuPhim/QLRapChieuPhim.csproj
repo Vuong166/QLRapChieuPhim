@@ -1,0 +1,88 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Phim.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Protos\RapChieuPhim.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\fonts\aleo-bold.svg" />
+    <None Include="wwwroot\fonts\aleo-bolditalic.svg" />
+    <None Include="wwwroot\fonts\aleo-italic.svg" />
+    <None Include="wwwroot\fonts\aleo-regular.svg" />
+    <None Include="wwwroot\fonts\MuseoSans_500-webfont.svg" />
+    <None Include="wwwroot\images\components\arrow.svg" />
+    <None Include="wwwroot\images\components\close.svg" />
+    <None Include="wwwroot\images\components\wave-danger.svg" />
+    <None Include="wwwroot\images\components\wave-dark-sm.svg" />
+    <None Include="wwwroot\images\components\wave-dark.svg" />
+    <None Include="wwwroot\images\components\wave-hover.svg" />
+    <None Include="wwwroot\images\components\wave-light-sm.svg" />
+    <None Include="wwwroot\images\components\wave-light.svg" />
+    <None Include="wwwroot\images\components\wave-main.svg" />
+    <None Include="wwwroot\images\components\wave.svg" />
+    <None Include="wwwroot\images\icons\left-arrow-danger.svg" />
+    <None Include="wwwroot\images\icons\left-arrow-dark.svg" />
+    <None Include="wwwroot\images\icons\left-arrow-disabled.svg" />
+    <None Include="wwwroot\images\icons\left-arrow.svg" />
+    <None Include="wwwroot\images\icons\right-arrow-danger.svg" />
+    <None Include="wwwroot\images\icons\right-arrow-dark.svg" />
+    <None Include="wwwroot\images\icons\right-arrow-disabled.svg" />
+    <None Include="wwwroot\images\icons\right-arrow.svg" />
+    <None Include="wwwroot\images\icons\sm-left-arrow-hover.svg" />
+    <None Include="wwwroot\images\icons\sm-left-arrow.svg" />
+    <None Include="wwwroot\images\icons\sm-right-arrow-hover.svg" />
+    <None Include="wwwroot\images\icons\sm-right-arrow.svg" />
+    <None Include="wwwroot\js\custom.js" />
+    <None Include="wwwroot\js\external\form-element.js" />
+    <None Include="wwwroot\js\external\jquery-3.1.1.min.js" />
+    <None Include="wwwroot\js\external\jquery-migrate-1.2.1.min.js" />
+    <None Include="wwwroot\js\external\jquery.raty.js" />
+    <None Include="wwwroot\js\external\jquery.selectbox-0.2.min.js" />
+    <None Include="wwwroot\js\external\modernizr.custom.js" />
+    <None Include="wwwroot\js\jquery.mobile.menu.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap\LICENSE" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.48.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.48.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\RapChieuPhim.proto" GrpcServices="Client" />
+  </ItemGroup>
+
+</Project>

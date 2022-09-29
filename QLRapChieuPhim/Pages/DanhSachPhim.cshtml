@@ -1,0 +1,108 @@
+﻿@page
+@model QLRapChieuPhim.Pages.DanhSachPhimModel
+@{
+}
+<link rel="stylesheet" href="~/css/style.css" />
+<style>
+    .navbar ul.navbar-nav a.nav-link {
+        font-size: 16px;
+    }
+    .category-filter {
+        padding: 7px 25px 7px 10px;
+        border: 1px solid #ced0da;
+        color: #43464b;
+    }
+</style>
+<section class="container">
+    <div class="col-sm-12">
+        <h2 class="page-heading">Danh sách phim</h2>
+        <div class="select-area">
+            <form method='get' id="myform" action="/DanhSachPhim?theloaiid=&currentpage=">
+                <label for="category">Thể loại: </label>
+                <select id="TheLoaiId" name="TheLoaiId" class="category-filter" tabindex="0" onchange="myform.submit()">
+                    @foreach (var tl in Model.DanhSachTheLoai)
+                    {
+                        if (tl.Id == Model.TheLoaiId)
+                        {
+                            <option value="@tl.Id" selected>@tl.Ten</option>
+                        }
+                        else
+                        {
+                            <option value="@tl.Id">@tl.Ten</option>
+                        }
+                    }
+                </select>
+
+                <a href="/ThemPhimMoi" class="btn btn--success" style="color: #fff; float: right;">
+                    <i class="fa fa-plus-square" aria-hidden="true" style="font-size: 16px;"></i> Thêm phim mới
+                </a>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+        @{
+            foreach (var phim in Model.DanhSachPhim)
+            {
+                <!-- Movie preview item -->
+                <div class="movie movie--preview movie--full release">
+                    <div class="col-sm-3 col-md-2 col-lg-2">
+                        <div class="movie__images">
+                            <a href="/ThongTinPhim?phimid=@phim.Id">
+                                <img alt="" src="data:image/png;base64, @phim.Poster">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+                        <a href="/ThongTinPhim?phimid=@phim.Id" class="movie__title link--huge">@phim.TenPhim</a>
+
+                        <p class="movie__time">@phim.ThoiLuong phút</p>
+
+                        <p class="movie__option"><strong>Nước sản xuất: </strong><a href="#">@phim.NuocSanXuat</a></p>
+                        <p class="movie__option"><strong>Hãng sản xuất: </strong><a href="#">@phim.NhaSanXuat</a></p>
+                        <p class="movie__option">
+                            <strong>Thể loại: </strong>
+                            @{
+                                var dsTheloai = Model.DanhSachTheLoai.Where(x => phim.DanhSachTheLoaiId.Contains("," + x.Id.ToString() + ",")).ToList();
+                                foreach (var tl in dsTheloai)
+                                {
+                                    <span>@tl.Ten, </span>
+                                }
+                            }
+                        </p>
+                        <p class="movie__option"><strong>Ngày khởi chiếu: @(phim.NgayKhoiChieu.Year >= DateTime.Now.Year + 10 ? "Chưa có lịch chiếu": phim.NgayKhoiChieu.ToString("dd/MM/yyyy"))</strong></p>
+                        <p class="movie__option"><strong>Đạo diễn: </strong><a href="#">@phim.DaoDien</a></p>
+                        <p class="movie__option"><strong>Diễn viên: </strong><a href="#">@phim.DienVien</a></p>
+                        @{
+                            var xephang = Model.DanhSachXepHangPhim.FirstOrDefault(x => x.Id.Equals(phim.XepHangPhimId));
+                            <p class="movie__option"><strong>@xephang.Ten</strong></p>
+                        }
+
+                        <div class="movie__btns">
+                            <a href="#" class="btn btn-md btn-- btn--warning">Đặt vé</a>
+                            <a href="#" class="watch-trailer">Trailer</a>
+                            <div class="clearfix"></div>
+                            <a href="/CapNhatPhim?phimid=" class="btn btn--default" style="margin-top: 20px;color: #fff;">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 16px;"></i> Edit
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- end movie preview item -->
+            }
+
+        }
+
+        <div class="pagination paginatioon--full">
+            <a href="/DanhSachPhim?category=&currentpage=" class="pagination__prev ">prev</a>
+            <a href="/DanhSachPhim?category=&currentpage=" class="pagination__next ">next</a>
+        </div>
+    </div>
+
+</section>
+<script type="text/javascript">
+        
+</script>

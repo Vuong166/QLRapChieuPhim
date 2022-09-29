@@ -1,0 +1,117 @@
+﻿@page
+@model QLRapChieuPhim.Pages.TimKiemModel
+@{
+}
+
+<link rel="stylesheet" href="~/css/style.css" />
+<style>
+    .navbar ul.navbar-nav a.nav-link {
+        font-size: 16px;
+    }
+
+    .category-filter {
+        padding: 7px 25px 7px 10px;
+        border: 1px solid #ced0da;
+        color: #43464b;
+    }
+
+    .input-search {
+        display: inline;
+    }
+
+        .input-search .keyword {
+            border: 1px solid #ced0da;
+            padding: 6px 25px 6px 10px;
+            transition: width 0.3s;
+            -webkit-transition: width 0.3s;
+            color: #43464b;
+            width: 300px;
+        }
+
+        .input-search .search-btn {
+            border: 0;
+            background: none;
+            padding: 2px 5px;
+            position: relative;
+            left: -32px;
+            color: #a0a3a7;
+        }
+</style>
+<section class="container">
+    <div class="col-sm-12">
+        <h2 class="page-heading">Danh sách phim</h2>
+        <div class="select-area">
+            <form method='get' id="myform" action="/TimKiem?keyword=&currentpage=">
+                <label for="category">Tìm phim: </label>
+
+                <div class="input-search">
+                    <input placeholder="Tìm tên phim, đạo diễn, diễn viên..." name="keyword" class="keyword" type="text" autocomplete="off" value="" />
+                    <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+                </div>
+
+                <div class="clearfix"></div>
+            </form>
+        </div>
+        @{
+            <div class="text-center">
+                <h1 class="display-4">Welcome to CSC Cinema</h1>
+                <img alt='logo' src="~/images/csc-cinema-logo.png" />
+            </div>
+        
+                <!-- Movie preview item -->
+                <div class="movie movie--preview movie--full release">
+                    <div class="col-sm-3 col-md-2 col-lg-2">
+                        <div class="movie__images">
+                            <a href="/ThongTinPhim?phimid=">
+                                <img alt="" src="">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9 col-md-10 col-lg-10 movie__about">
+                        <a href="/ThongTinPhim?phimid=" class="movie__title link--huge"></a>
+
+                        <p class="movie__time"></p>
+
+                        <p class="movie__option"><strong>Nước sản xuất: </strong><a href="#"></a></p>
+                        <p class="movie__option"><strong>Hãng sản xuất: </strong><a href="#"></a></p>
+                        <p class="movie__option">
+                            <strong>Thể loại: </strong>
+                            
+                        </p>
+                        <p class="movie__option"><strong>Ngày khởi chiếu: </strong></p>
+                        <p class="movie__option"><strong>Đạo diễn: </strong><a href="#"></a></p>
+                        <p class="movie__option"><strong>Diễn viên: </strong><a href="#"></a></p>
+                        <p class="movie__option"><strong></strong></p>
+
+                        <div class="movie__btns">
+                            <a href="#" class="btn btn-md btn-- btn--warning">Đặt vé</a>
+                            <a href="#" class="watch-trailer">Trailer</a>
+                            <div class="clearfix"></div>
+                            <a href="/CapNhatPhim?phimid=" class="btn btn--default" style="margin-top: 20px;color: #fff;">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 16px;"></i> Edit
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- end movie preview item -->
+            }
+
+            @{
+                <div class="pagination paginatioon--full">
+                    <a href="/DanhSachPhim?keyword=&currentpage=" class="pagination__prev ">prev</a>
+                    <a href="/DanhSachPhim?keyword=&currentpage=" class="pagination__next ">next</a>
+                </div>
+            }
+        }
+        
+    </div>
+
+</section>
+<script type="text/javascript">
+        
+</script>
