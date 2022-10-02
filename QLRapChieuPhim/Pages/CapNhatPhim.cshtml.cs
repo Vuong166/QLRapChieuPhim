@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
-using grpcQLRapChieuPhim;
+using gRPCRapChieuPhim;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using QLRapChieuPhim.Models;
@@ -24,10 +24,10 @@ namespace QLRapChieuPhim.Pages
                 var channel = GrpcChannel.ForAddress(Common.ServiceLink);
                 var client = new RapChieuPhim.RapChieuPhimClient(channel);
 
-                var input = new ThongTinPhimInput { PhimId = phimid };
-                var response = client.DocThongTinPhim(input);
+                var input = new Input.Types.Phim { Id = phimid };
+                var response = client.XemThongTinPhim(input);
                 Phim = new PhimModel();
-                PropertyCopier<ThongTinPhim, PhimModel>.Copy(response.Phim, Phim);
+                PropertyCopier<Output.Types.Phim, PhimModel>.Copy(response, Phim);
             }
             return Page();
         }

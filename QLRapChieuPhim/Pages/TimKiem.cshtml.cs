@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Grpc.Net.Client;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using grpcQLRapChieuPhim;
+using gRPCRapChieuPhim;
 using QLRapChieuPhim.Models;
 
 namespace QLRapChieuPhim.Pages
@@ -30,10 +30,10 @@ namespace QLRapChieuPhim.Pages
 
             if (string.IsNullOrEmpty(Keyword)) Keyword = "";
 
-            var input = new TimPhimInput { Keyword = Keyword, CurrentPage = CurrentPage, PageSize = 20 };
+            var input = new Input.Types.TimPhim { KeyWord = Keyword, CurrentPage = CurrentPage, PageSize = 20 };
             var response = client.TimPhim(input);
 
-            DanhSachPhim = response.DanhSachPhim.Select(phim => new PhimModel
+            DanhSachPhim = response.Items.Select(phim => new PhimModel
             {
                 Id = phim.Id,
                 TenPhim = phim.TenPhim,

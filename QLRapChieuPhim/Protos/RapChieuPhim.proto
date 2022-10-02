@@ -97,6 +97,7 @@ message Output {
         int32 PageCount = 2;
         TheLoaiPhim TheLoaiHienHanh = 3;
         string ThongBao = 4;
+        int32 CurrentPage =5;
     }
     message XepHangPhim {
         int32 Id = 1;
