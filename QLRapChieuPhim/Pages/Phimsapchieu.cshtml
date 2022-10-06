@@ -1,5 +1,5 @@
-﻿@*@page
-@model QLRapChieuPhim.Pages.DanhSachPhimModel
+﻿@page
+@model QLRapChieuPhim.Pages.PhimsapchieuModel
 @{
 }
 <link rel="stylesheet" href="~/css/style.css" />
@@ -44,7 +44,7 @@
         @{
             foreach (var phim in Model.DanhSachPhim)
             {
-                 Movie preview item 
+                //Movie preview item 
                 <div class="movie movie--preview movie--full release">
                     <div class="col-sm-3 col-md-2 col-lg-2">
                         <div class="movie__images">
@@ -63,7 +63,8 @@
                         <p class="movie__option"><strong>Hãng sản xuất: </strong><a href="#">@phim.NhaSanXuat</a></p>
                         <p class="movie__option">
                             <strong>Thể loại: </strong>
-                            @{
+                            @if (Model.DanhSachTheLoai.Count > 0)
+                            {
                                 var dsTheloai = Model.DanhSachTheLoai.Where(x => phim.DanhSachTheLoaiId.Contains("," + x.Id.ToString() + ",")).ToList();
                                 foreach (var tl in dsTheloai)
                                 {
@@ -74,7 +75,8 @@
                         <p class="movie__option"><strong>Ngày khởi chiếu: @(phim.NgayKhoiChieu.Year >= DateTime.Now.Year + 10 ? "Chưa có lịch chiếu": phim.NgayKhoiChieu.ToString("dd/MM/yyyy"))</strong></p>
                         <p class="movie__option"><strong>Đạo diễn: </strong><a href="#">@phim.DaoDien</a></p>
                         <p class="movie__option"><strong>Diễn viên: </strong><a href="#">@phim.DienVien</a></p>
-                        @{
+                        @if (Model.DanhSachXepHangPhim.Count > 0)
+                        {
                             var xephang = Model.DanhSachXepHangPhim.FirstOrDefault(x => x.Id.Equals(phim.XepHangPhimId));
                             <p class="movie__option"><strong>@xephang.Ten</strong></p>
                         }
@@ -93,8 +95,8 @@
                     <div class="clearfix"></div>
 
                 </div>
-                 end movie preview item 
-            }
+                                //end movie preview item 
+                            }
 
         }
 
@@ -131,4 +133,4 @@
 </section>
 <script type="text/javascript">
 
-</script>*@
+</script>
